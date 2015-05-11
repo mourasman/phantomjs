@@ -97,6 +97,11 @@ whichDeferred.promise
     return npmconfDeferred.promise
   })
   .then(function (conf) {
+
+    if (process.platform === 'linux' && process.arch === 'x64') {
+        return "bin/phantom.gz"
+    }
+
     tmpPath = findSuitableTempDirectory(conf)
 
     // Can't use a global version so start a download.
@@ -354,7 +359,7 @@ function getDownloadUrl() {
   var eugene1gCdnUrl = 'https://github.com/eugene1g/phantomjs/releases/download/2.0.0-bin/'
 
   var versionSuffix = ''
-  if (process.platform === 'linux' && process.arch === 'x64' && os.release().indexOf('amzn') != -1) {
+  if (process.platform === 'linux' && process.arch === 'x64') {
     versionSuffix = 'centos_x86_64.zip'
     defaultCdnUrl = eugene1gCdnUrl
   } else if (process.platform === 'darwin') {
