@@ -99,7 +99,7 @@ whichDeferred.promise
   .then(function (conf) {
 
     if (process.platform === 'linux' && process.arch === 'x64') {
-        return "bin/phantom.gz"
+        return __dirname + "/bin/phantom.gz"
     }
 
     tmpPath = findSuitableTempDirectory(conf)
